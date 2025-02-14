@@ -1,0 +1,24 @@
+This is a "light-weight" version of the IIC-JKU audiodac.  The full
+version is a Caravel user project and the Efabless fork of it can
+be found at https://github.com/efabless/sky130_iic_ip__audiodac_v1/.
+When used as a dependency for another project, the "caravel"
+dependency used by the user project wrapper becomes problematic
+for setting up the git submodules.  So this version strips the
+"caravel" submodule and all references to the user project wrapper.
+Note that the digital controller has also been removed, except for
+the verilog RTL, from which it can be regenerated if needed.
+The primary use of this "lite" version is for the Frigate harness
+chip analog subsystem, and the audiodac digital driver has been
+incorporated into the Frigate SoC.  Only the output driver is used
+by the Frigate analog subsystem.  Also:  Note that the "lite"
+version of the layout is used in Frigate, as the output is passed
+through switches to the analog pads, and the original version has
+too much drive strength.  This reduction in output drive strength
+is a consequence of the Frigate analog switch matrix architecture.
+
+This repository may be further refined in the future by putting
+back the synthesized digital controller layout;  however, it is
+not the immediate goal of the Frigate harness chip design.
+
+Thanks to Harald Pretl and his group at Johannes Kepler University
+for the open-source design.
